@@ -1,4 +1,4 @@
-const menuData = [
+const MenuData = [
   { category: "Appetizers", price: "$1.49", name: "Spring Roll" },
   { category: "Appetizers", price: "$1.99", name: "Miso Soup" },
   { category: "Appetizers", price: "$4.99", name: "Dumplings" },
@@ -10,4 +10,4 @@ const menuData = [
   { category: "Sushi Rolls", price: "$5.99", name: "Salmon Roll" },
 ];
 
-export default menuData;
+export default MenuData;
