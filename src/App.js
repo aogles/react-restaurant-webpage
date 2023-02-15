@@ -11,7 +11,16 @@ import Order from "./components/Order";
 const App = () => {
   const [menuItems, setMenuItems] = useState(data);
   const [category, setCategory] = useState("appetizers");
-  const [cart, SetCart] = useState({});
+  const [cart, setCart] = useState([]);
+  const [order, setOrder] = useState([]);
+
+  const addToCart = (menuItem, name, price) => {
+    const updatedCart = [...cart, menuItem, name, price];
+    setCart(updatedCart);
+    setOrder(updatedCart);
+
+    //setCart([...cart, menuItem]);
+  };
 
   // returns an array of just categories
   let categories = menuItems.map((menuItem) => menuItem.category.toLowerCase()); // ['appetizers', 'appetizers', 'appetizers', 'hibachi', 'hibachi', 'hibachi', 'sushi rolls', 'sushi rolls','sushi rolls'];
@@ -36,10 +45,11 @@ const App = () => {
       <section className="menu section">
         {categoryButtons}
         <h2>Menu List</h2>
-        <MenuList menuItems={filteredMenuItems} />
+        <MenuList menuItems={filteredMenuItems} addToCart={addToCart} />
       </section>
       <section className="Cart">
         <h2>Cart</h2>
+        <Order cart={cart} addToCart={addToCart} />
       </section>
     </main>
   );

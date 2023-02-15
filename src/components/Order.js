@@ -1,19 +1,31 @@
 import { useState } from "react";
-import MenuItem from "./MenuItem";
-import menuItems from "../menuItems";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import addToCart from "../App";
 
 const Order = () => {
   const [order, setOrder] = useState(0);
-
-  const addToCart = () => {
-    setOrder((order) => order + 1); //this will update the state on click
-  };
-
+  setOrder(updatedCart);
   return (
-    <div className="container">
-      <h2>{MenuItem.name}</h2>
-      <p>{MenuItem.price}</p>
-    </div>
+    <Form>
+      <div className="container"></div>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <div></div>
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Label>Full Name</Form.Label>
+        <Form.Control type="text" placeholder="Enter Full Name"></Form.Control>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control type="number" placeholder="Phone Number" />
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form.Group>
+    </Form>
   );
 };
 
