@@ -1,44 +1,45 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MenuData from "./components/Menu";
-import Badge from "react-bootstrap/Badge";
 import { useState } from "react";
-import Categories from "./components/category";
-import items from "./items";
-import MenuItems from "./items";
+import data from "./menuItems";
+import MenuList from "./components/MenuList";
+import Order from "./components/Order";
 
-const allCategories = [
-  "all",
-  ...new Set(MenuItems.map((item) => item.category)),
-];
+// const fullMenu = items.map((item) => item.category);
+// new Set();
 
 const App = () => {
-  const [menuItems, setMenuItems] = useState(items);
-  const [categories, setCategories] = useState(allCategories);
-  const [menuCategory, setMenuCategory] = useState("");
+  const [menuItems, setMenuItems] = useState(data);
+  const [category, setCategory] = useState("appetizers");
+  const [cart, SetCart] = useState({});
 
-  const filterItems = (category) => {
-    setMenuCategory(category);
-    if (category === "all") {
-      setMenuItems(items);
-      return;
-    }
-    const newItems = items.filter((item) => item.category === category);
-    setMenuItems(newItems);
-  };
+  // returns an array of just categories
+  let categories = menuItems.map((menuItem) => menuItem.category.toLowerCase()); // ['appetizers', 'appetizers', 'appetizers', 'hibachi', 'hibachi', 'hibachi', 'sushi rolls', 'sushi rolls','sushi rolls'];
+
+  // create a set of unique category values
+  categories = new Set(categories); // returns a set of unique values, includes 'appetizers', 'sushi rolls', and 'hibachi' once each
+
+  categories = [...categories]; // ['appetizers', 'sushi rolls', 'hibachi'];
+
+  const categoryButtons = categories.map((category) => (
+    <button key={category} onClick={() => setCategory(category)}>
+      {category}
+    </button>
+  ));
+
+  const filteredMenuItems = menuItems.filter(
+    (menuItem) => menuItem.category.toLowerCase() === category
+  );
+
   return (
     <main>
       <section className="menu section">
-        <div className="title">
-          <h2>Menu List</h2>
-          <div className="underline"></div>
-        </div>
-        <Categories
-          categories={categories}
-          menuCategory={menuCategory}
-          filterItems={filterItems}
-        />
-        <MenuItems items={menuItems} />
+        {categoryButtons}
+        <h2>Menu List</h2>
+        <MenuList menuItems={filteredMenuItems} />
+      </section>
+      <section className="Cart">
+        <h2>Cart</h2>
       </section>
     </main>
   );
