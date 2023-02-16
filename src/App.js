@@ -12,12 +12,11 @@ const App = () => {
   const [menuItems, setMenuItems] = useState(data);
   const [category, setCategory] = useState("appetizers");
   const [cart, setCart] = useState([]);
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState("");
 
-  const addToCart = (menuItem, name, price) => {
-    const updatedCart = [...cart, menuItem, name, price];
+  const addToCart = (menuItem) => {
+    const updatedCart = [...cart, menuItem];
     setCart(updatedCart);
-    setOrder(updatedCart);
 
     //setCart([...cart, menuItem]);
   };
@@ -47,10 +46,12 @@ const App = () => {
         <h2>Menu List</h2>
         <MenuList menuItems={filteredMenuItems} addToCart={addToCart} />
       </section>
-      <section className="Cart">
-        <h2>Cart</h2>
-        <Order cart={cart} addToCart={addToCart} />
-      </section>
+      <div className="Order">
+        <section className="Cart">
+          <h2>Cart</h2>
+          <Order cart={cart} order={order} />
+        </section>
+      </div>
     </main>
   );
 };

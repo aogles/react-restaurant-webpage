@@ -1,7 +1,8 @@
+import { useState } from "react";
+
 import MenuItem from "./MenuItem";
 
 //function to pull in menu item categories//
-
 const MenuList = ({ menuItems, ...props }) => {
   return (
     <div className="section-center">
@@ -15,5 +16,4 @@ const MenuList = ({ menuItems, ...props }) => {
     </div>
   );
 };
-
 export default MenuList;
