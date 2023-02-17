@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import addToCart from "../App";
@@ -7,14 +7,16 @@ const Order = ({ cart }) => {
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [items, setItems] = useState([]);
   const [price, setPrice] = useState("");
 
-  const sumbitOrder = (order) => {
-    // save the complete order to localStore
-    {
-      email, fullname, phoneNumber, cart;
-    }
-  };
+  // save the complete order to localStorage
+  useEffect(() => {
+    localStorage.setItem(
+      "items",
+      JSON.stringify(items, email, fullname, phoneNumber, cart)
+    );
+  }, [items, email, fullname, phoneNumber, cart]);
 
   const cartItems = cart.map((item, index) => (
     <div key={index}>
@@ -60,11 +62,7 @@ const Order = ({ cart }) => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Phone Number</Form.Label>
           <Form.Control type="number" placeholder="Phone Number" />
-          <Button
-            onClick={() => sumbitOrder(cart)}
-            variant="primary"
-            type="submit"
-          >
+          <Button onClick={useEffect} variant="primary" type="submit">
             Submit
           </Button>
         </Form.Group>
