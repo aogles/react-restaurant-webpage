@@ -1,5 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { useState } from "react";
 import data from "./menuItems";
 import MenuList from "./components/MenuList";
@@ -41,17 +45,38 @@ const App = () => {
 
   return (
     <main>
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <img
+            className="JOT-logo"
+            href="home"
+            src="https://images.getbento.com/accounts/79e2f400b6ff9283f8062968842f8dbc/media/images/37832logo.png"
+          ></img>
+          <Navbar.Brand href="#home">Joy of Tokyo</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#link">Link</Nav.Link>
+              <NavDropdown title="Menu" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">
+                  {categoryButtons}
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <section className="menu section">
-        {categoryButtons}
-        <h2>Menu List</h2>
+        <h2>Menu Items</h2>
         <MenuList menuItems={filteredMenuItems} addToCart={addToCart} />
       </section>
-      <div className="Order">
+      <aside className="Order">
         <section className="Cart">
           <h2>Cart</h2>
           <Order cart={cart} order={order} />
         </section>
-      </div>
+      </aside>
     </main>
   );
 };
