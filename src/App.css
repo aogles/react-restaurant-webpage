@@ -2,12 +2,30 @@
   height: 100px;
   width: 100px;
 }
+.nav-bar {
+  background-color: rgb(67, 4, 4);
+  color: beige;
+  border-bottom: solid black 2px;
+}
 
 .Order {
-  border: solid red 1px;
+  border: solid rgb(6, 6, 6) 2px;
   position: relative;
-  height: 90%;
-  width: 50%;
-  left: 50%;
-  top: -200px;
+  height: 400px;
+  width: 30%;
+  left: 70%;
+  top: -400px;
+}
+
+.menu-section {
+  top: 0px;
+  border: solid rgb(6, 6, 6) 2px;
+  position: relative;
+  width: 70%;
+}
+
+.d-block {
+  height: 600px;
+  width: 100%;
+  top: -300px;
 }

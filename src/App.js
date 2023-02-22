@@ -8,6 +8,7 @@ import { useState } from "react";
 import data from "./menuItems";
 import MenuList from "./components/MenuList";
 import Order from "./components/Order";
+import Carousel from "react-bootstrap/Carousel";
 
 // const fullMenu = items.map((item) => item.category);
 // new Set();
@@ -44,7 +45,7 @@ const App = () => {
   );
 
   return (
-    <main>
+    <main className="nav-bar">
       <Navbar bg="light" expand="lg">
         <Container>
           <img
@@ -67,7 +68,7 @@ const App = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <section className="menu section">
+      <section className="menu-section">
         <h2>Menu Items</h2>
         <MenuList menuItems={filteredMenuItems} addToCart={addToCart} />
       </section>
@@ -77,6 +78,29 @@ const App = () => {
           <Order cart={cart} order={order} />
         </section>
       </aside>
+      <Carousel>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://cdn11.bigcommerce.com/s-raxt2z29l9/images/stencil/876w/uploaded_images/hibachi-restaurants-chef-new.jpg?t=1644518506"
+            alt="First slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://d1ralsognjng37.cloudfront.net/c8323ce0-a6e5-4a43-b15e-6cc3db53d5b9.jpeg"
+            alt="Second slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://d1ralsognjng37.cloudfront.net/ff055c8e-61e1-45b3-a876-2e66cde8e1dd.jpeg"
+            alt="Third slide"
+          />
+        </Carousel.Item>
+      </Carousel>
     </main>
   );
 };
