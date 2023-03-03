@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import addToCart from "../App";
 
 const Order = ({ cart }) => {
   const [email, setEmail] = useState("");
-  const [fullname, setFullname] = useState("");
+  const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   // save the complete order to localStorage
@@ -14,10 +13,12 @@ const Order = ({ cart }) => {
   //strigify will make strigified array in order to store in local storage
   //.push is used to push order componnenets into the orders being stored
 
-  const submitOrder = () => {
+  const submitOrder = (e) => {
+    e.preventDefault();
+    console.log("this is working");
     const order = {
       email,
-      fullname,
+      fullName,
       phoneNumber,
       cart,
     };
@@ -29,6 +30,9 @@ const Order = ({ cart }) => {
     orders.push(order);
 
     localStorage.setItem("orders", JSON.stringify(orders));
+    setEmail("");
+    setPhoneNumber("");
+    setFullName("");
   };
 
   const cartItems = cart.map((item, index) => (
@@ -60,31 +64,36 @@ const Order = ({ cart }) => {
       {cartItems}
 
       <Form onSubmit={submitOrder}>
-        <div className="container"></div>
-
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          {email}
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Full Name"
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control
-            type="tel"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            placeholder="Phone Number"
-          />
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form.Group>
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          name="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <Form.Label>Full Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter Full Name"
+          name="fullName"
+          onChange={(e) => setFullName(e.target.value)}
+          value={fullName}
+        />
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control
+          type="tel"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="123-456-7891"
+          name="phoneNumber"
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          value={phoneNumber}
+          minLength="9"
+          maxLength="14"
+        />
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </Form>
     </>
   );
