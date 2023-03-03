@@ -76,7 +76,11 @@ const Order = ({ cart }) => {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="number" placeholder="Phone Number" />
+          <Form.Control
+            type="tel"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            placeholder="Phone Number"
+          />
           <Button variant="primary" type="submit">
             Submit
           </Button>
